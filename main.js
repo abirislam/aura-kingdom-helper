@@ -1,5 +1,5 @@
 const { autoUpdater } = require("electron-updater")
-const { app, BrowserWindow, ipcMain, globalShortcut } = require('electron')
+const { app, BrowserWindow, globalShortcut } = require('electron')
 const { Tray, Menu, nativeImage } = require('electron')
 const path = require('node:path')
 

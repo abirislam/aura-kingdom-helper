@@ -1,6 +1,6 @@
 {
   "name": "aura-kingdom-helper",
-  "version": "1.0.3",
+  "version": "1.0.2",
   "description": "helper app for aura kingdom",
   "homepage": "https://github.com/abirislam/aura-kingdom-helper#readme",
   "bugs": {
@@ -19,7 +19,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "package": "electron-forge package",
     "make": "npx electron-builder --win",
-    "publish": "npx electron-builder --win --publish always"
+    "publish": "npx electron-builder --win --publish never"
   },
   "devDependencies": {
     "@electron-forge/cli": "^7.8.0",
@@ -31,13 +31,13 @@
     "@electron-forge/plugin-fuses": "^7.8.0",
     "@electron-forge/publisher-github": "^7.8.0",
     "@electron/fuses": "^1.8.0",
+    "cross-env": "^7.0.3",
     "electron": "35.1.5",
     "electron-builder": "^26.0.12"
   },
   "dependencies": {
     "dotenv": "^16.5.0",
-    "electron-updater": "^6.6.2",
-    "update-electron-app": "^3.1.1"
+    "electron-updater": "^6.6.2"
   },
   "build": {
     "appId": "com.akhelper.app",
