@@ -44,7 +44,7 @@ app.whenReady().then(() => {
     })
 
     // tray stuff
-    const icon = nativeImage.createFromPath('./icon.png')
+    const icon = nativeImage.createFromPath('./icon.ico')
     tray = new Tray(icon)
 
     const contextMenu = Menu.buildFromTemplate([
