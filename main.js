@@ -1,4 +1,3 @@
-// require('update-electron-app')()
 const { app, BrowserWindow, ipcMain, globalShortcut } = require('electron')
 const { Tray, Menu, nativeImage } = require('electron')
 const path = require('node:path')

@@ -2,4 +2,6 @@
 Finds in-game items referencing https://www.aurakingdom-db.com/
 
 ## Status
-This app is not done yet.
+### Basic Functionality Achieved
+- Once the app is launched, you can open the DB page using Ctrl+D
+- To hide the DB page, simply hit Escape
