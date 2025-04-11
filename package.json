@@ -1,6 +1,6 @@
 {
   "name": "aura-kingdom-helper",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "helper app for aura kingdom",
   "homepage": "https://github.com/abirislam/aura-kingdom-helper#readme",
   "bugs": {
@@ -18,8 +18,8 @@
     "start": "electron-forge start",
     "test": "echo \"Error: no test specified\" && exit 1",
     "package": "electron-forge package",
-    "make": "electron-forge make",
-    "publish": "electron-forge publish"
+    "make": "npx electron-builder --win",
+    "publish": "npx electron-builder --publish"
   },
   "devDependencies": {
     "@electron-forge/cli": "^7.8.0",
@@ -31,11 +31,32 @@
     "@electron-forge/plugin-fuses": "^7.8.0",
     "@electron-forge/publisher-github": "^7.8.0",
     "@electron/fuses": "^1.8.0",
-    "electron": "^35.1.5"
+    "electron": "35.1.5",
+    "electron-builder": "^26.0.12"
   },
   "dependencies": {
     "dotenv": "^16.5.0",
-    "electron-squirrel-startup": "^1.0.1",
+    "electron-updater": "^6.6.2",
     "update-electron-app": "^3.1.1"
+  },
+  "build": {
+    "appId": "com.akhelper.app",
+    "productName": "AuraKingdomHelper",
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": true,
+      "allowToChangeInstallationDirectory": true
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "abirislam",
+        "repo": "aura-kingdom-helper",
+        "releaseType": "release"
+      }
+    ]
   }
 }

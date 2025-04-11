@@ -1,6 +1,11 @@
+const { autoUpdater } = require("electron-updater")
 const { app, BrowserWindow, ipcMain, globalShortcut } = require('electron')
 const { Tray, Menu, nativeImage } = require('electron')
 const path = require('node:path')
+
+app.on('ready', () => {
+    autoUpdater.checkForUpdatesAndNotify();
+})
 
 let win;
 let tray;
@@ -11,11 +16,14 @@ const createWindow = () => {
     if (win) return;
 
     win = new BrowserWindow({
-        titleBarStyle: 'hidden',
+        frame: false,
+        alwaysOnTop: true,
+        skipTaskbar: true,
         width: 1200,
         height: 760,
         webPreferences: {
-            preload: path.join(__dirname, 'preload.js')
+            preload: path.join(__dirname, 'preload.js'),
+            contextIsolation: true
         }
     })
 
@@ -28,11 +36,10 @@ app.whenReady().then(() => {
         createWindow()
         if (!win.isVisible()) {
             win.show()
-        }
-    })
-    globalShortcut.register('Escape', () => {
-        if (win && !win.isMinimized() && win.isVisible()) {
+        } else {
+            win.minimize()
             win.hide()
+            win.minimize()
         }
     })
 
@@ -44,6 +51,6 @@ app.whenReady().then(() => {
         { label: 'Exit', role: 'quit' }
     ])
 
-    tray.setToolTip("You're so cute :)")
+    tray.setToolTip("AK Helper")
     tray.setContextMenu(contextMenu)
 })
