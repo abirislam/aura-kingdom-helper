@@ -1,7 +1,10 @@
 # aura-kingdom-helper
 Finds in-game items referencing https://www.aurakingdom-db.com/
 
-## Status
-### Basic Functionality Achieved
-- Once the app is launched, you can open the DB page using Ctrl+D
+## Status: DB Page (Ctrl+D) ✅ Item Finder ❌
+### 
+- Launch executable file
+- You can open the DB page using Ctrl+D
 - To hide the DB page, simply hit Ctrl+D again
+- Hover over an item and hit Ctrl+F to search for the specific item
+- Ctrl+F only partially working, OCR needs refinement
