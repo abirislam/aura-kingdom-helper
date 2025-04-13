@@ -1,6 +1,6 @@
 {
   "name": "aura-kingdom-helper",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "helper app for aura kingdom",
   "homepage": "https://github.com/abirislam/aura-kingdom-helper#readme",
   "bugs": {
@@ -37,9 +37,19 @@
   },
   "dependencies": {
     "dotenv": "^16.5.0",
-    "electron-updater": "^6.6.2"
+    "electron-updater": "^6.6.2",
+    "python-shell": "^5.0.0"
   },
   "build": {
+    "extraResources": [
+      {
+        "from": "python",
+        "to": "python",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
     "appId": "com.akhelper.app",
     "productName": "AuraKingdomHelper",
     "win": {

@@ -1,8 +1,9 @@
 const { autoUpdater } = require("electron-updater")
 const { app, BrowserWindow, globalShortcut } = require('electron')
 const { Tray, Menu, nativeImage } = require('electron')
-const { spawn } = require('child_process')
-const path = require('node:path')
+const { PythonShell } = require('python-shell')
+const { spawn } = require('child_process');
+const path = require('path')
 
 app.on('ready', () => {
     autoUpdater.checkForUpdatesAndNotify();
@@ -32,15 +33,17 @@ const createDatabasePage = () => {
 
     win.loadURL('https://www.aurakingdom-db.com/')
 
-    win.once('ready-to-show', () => {
-        win2.show()
-    })
+    showWindowOnReady(win)
 }
 
 const createItemSearch = (searchTerm) => {
 
+    console.log("attemping to load " + searchTerm + "\n")
+
     if (win2) {
+        console.log('Reloading URL in existing win2');
         win2.loadURL(searchTerm)
+        showWindowOnReady(win2)
         return
     }
 
@@ -57,10 +60,15 @@ const createItemSearch = (searchTerm) => {
         }
     })
 
+    console.log('Loading URL in new win2');
     win2.loadURL(searchTerm)
+    showWindowOnReady(win2)
+}
 
-    win2.once('ready-to-show', () => {
-        win2.show()
+const showWindowOnReady = (window) => {
+    window.webContents.once('did-finish-load', () => {
+        console.log('win2 finished loading');
+        window.show();
     })
 }
 
@@ -92,16 +100,30 @@ app.whenReady().then(() => {
             win.hide()
             win.minimize()
         } else {
-            const python = spawn('python', ['capture.py'])
+            const capturePath = app.isPackaged 
+                ? path.join(process.resourcesPath, 'python')
+                : path.join(__dirname, 'python')
+            const capturePy = path.join(capturePath, 'capture.py')
+            const python = spawn('python', [capturePy], {
+                stdio: ['ignore', 'pipe', 'pipe'],
+                windowsHide: true
+            });
+
             let output = ""
+
             python.stdout.on('data', (data) => {
+                console.log("Python stdout:", data.toString());
                 output += data.toString()
             })
+
+            python.stderr.on('data', (data) => {
+                console.error("Python stderr:", data.toString());
+            });
+
             python.on('close', (code) => {
                 console.log('OCR result:', output.trim())
                 const url = output.trim()
                 createItemSearch(url)
-                win2.show()
             })
         }
     })
@@ -114,6 +136,6 @@ app.whenReady().then(() => {
         { label: 'Exit', role: 'quit' }
     ])
 
-    tray.setToolTip("AK Helper")
+    tray.setToolTip("AuraKingdomHelper")
     tray.setContextMenu(contextMenu)
 })
