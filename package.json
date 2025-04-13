@@ -48,6 +48,10 @@
         "filter": [
           "**/*"
         ]
+      },
+      {
+        "from": "icon.ico",
+        "to": "icon.ico"
       }
     ],
     "appId": "com.akhelper.app",

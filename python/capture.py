@@ -7,11 +7,13 @@ import pytesseract
 import os
 import re
 import pickle
+import sys
 
 camera = dxcam.create()
 base_dir = os.path.dirname(os.path.abspath(__file__))
 pytesseract.pytesseract.tesseract_cmd = os.path.join(base_dir, 'tesseract', 'tesseract.exe')
-with open("./assets/whitelist.pkl", "rb") as f:
+whitelist_path = sys.argv[1]
+with open(whitelist_path, "rb") as f:
     whitelist = pickle.load(f)
 
 def capture_item() -> np.array:

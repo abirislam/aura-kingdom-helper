@@ -104,10 +104,16 @@ app.whenReady().then(() => {
                 ? path.join(process.resourcesPath, 'python')
                 : path.join(__dirname, 'python')
             const capturePy = path.join(capturePath, 'capture.py')
-            const python = spawn('python', [capturePy], {
+
+            const whitelistPath = app.isPackaged
+                ? path.join(process.resourcesPath, 'python')
+                : path.join(__dirname, 'python')
+            const whitelistPkl = path.join(whitelistPath, 'whitelist.pkl')
+
+            const python = spawn('python', [capturePy, whitelistPkl], {
                 stdio: ['ignore', 'pipe', 'pipe'],
                 windowsHide: true
-            });
+            })
 
             let output = ""
 
