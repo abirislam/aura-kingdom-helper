@@ -1,13 +1,6 @@
 # aura-kingdom-helper
 Finds in-game items referencing https://www.aurakingdom-db.com/
 
-## Requirements
-This project utilizes Python and Tesseract
-- Python [download](https://www.python.org/downloads/)
-- Tesseract [download](https://github.com/UB-Mannheim/tesseract/wiki)
-
-Ctrl+F Item Finder will not work otherwise
-
 ## Status: DB Page (Ctrl+D) ✅ Item Finder (Ctrl+F) ❌
 ### 
 - Launch executable file
