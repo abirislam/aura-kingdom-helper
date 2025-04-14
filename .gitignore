@@ -136,5 +136,5 @@ dist
 .pnp.*
 
 #python stuff i made
-./python/build
-./python/dist
+./python/build/
+./python/dist/
