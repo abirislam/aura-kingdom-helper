@@ -1,7 +1,6 @@
 const { autoUpdater } = require("electron-updater")
 const { app, BrowserWindow, globalShortcut } = require('electron')
 const { Tray, Menu, nativeImage } = require('electron')
-const { PythonShell } = require('python-shell')
 const { spawn } = require('child_process');
 const path = require('path')
 
