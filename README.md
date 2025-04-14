@@ -1,7 +1,7 @@
 # aura-kingdom-helper
 Finds in-game items referencing https://www.aurakingdom-db.com/
 
-# Architecture
+## Architecture
 - The frontend is displayed using Electron and Node.js
 - The Ctrl+F hotkey launches a Python child process that uses Numpy, Tesseract, and OpenCV
 
